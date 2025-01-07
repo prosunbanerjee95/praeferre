@@ -19,6 +19,7 @@ function Login() {
 
     function hidePassword() {
         setIsVisible(!isVisible);
+
         setType("password");
     };
 
