@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
-import { material } from '../../library/material';
-// import './Login.css'
-import { useForm } from 'react-hook-form';
-// import { Navigate, useNavigate } from 'react-router';
-// import image from '../../assets/PRAEFERRE-Logo_Black.png';
-import { height } from '@mui/system';
 import logo from '../../assets/logo.png';
 import image from '../../assets/PRAEFERRE-Logo_Black.png'
 import { Box, TextField, Button, InputAdornment, Avatar, Typography } from '@mui/material';
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
-// import Grid2 from '@mui/material/Unstable_Grid2'; // For MUI v5
-// import Grid2 from '@mui/material';
-import Grid from '@mui/material/Grid2';
 
 
 
 function Login() {
-    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm();
     const [type, setType] = useState("password");
     const [isVisible, setIsVisible] = useState(false);
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
-    // const Navigate = useNavigate();
 
     function showPassword() {
         setIsVisible(!isVisible);
