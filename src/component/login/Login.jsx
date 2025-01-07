@@ -3,10 +3,12 @@ import logo from '../../assets/logo.png';
 import image from '../../assets/PRAEFERRE-Logo_Black.png'
 import { Box, TextField, Button, InputAdornment, Avatar, Typography } from '@mui/material';
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Navigate,useNavigate } from 'react-router';
 
 
 
 function Login() {
+    const navigate = useNavigate();
     const [type, setType] = useState("password");
     const [isVisible, setIsVisible] = useState(false);
     const [userId, setUserId] = useState("");
@@ -24,6 +26,7 @@ function Login() {
     };
 
     const login = (data) => {
+        navigate('/DashboardChart');
         console.log(data);
     };
 
