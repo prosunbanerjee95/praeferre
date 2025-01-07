@@ -84,26 +84,26 @@ const doughnutChartData = {
     labels: ['Compliant', 'Failed'],
 };
 
-const centerTextPlugin = {
-    id: 'centerText',
-    beforeDraw: (chart) => {
-        const { width, height } = chart;
-        const ctx = chart.ctx;
+// const centerTextPlugin = {
+//     id: 'centerText',
+//     beforeDraw: (chart) => {
+//         const { width, height } = chart;
+//         const ctx = chart.ctx;
 
-        ctx.save();
-        const text = `${compliantPolicy}% Compliant`;
-        console.log(text)
-        ctx.font = '16px Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#000';
+//         ctx.save();
+//         const text = `${compliantPolicy}% Compliant`;
+//         console.log(text)
+//         ctx.font = '16px Arial';
+//         ctx.textAlign = 'center';
+//         ctx.textBaseline = 'middle';
+//         ctx.fillStyle = '#000';
 
-        const textX = width / 2;
-        const textY = height / 2;
-        ctx.fillText(text, textX, textY);
-        ctx.restore();
-    },
-};
+//         const textX = width / 2;
+//         const textY = height / 2;
+//         ctx.fillText(text, textX, textY);
+//         ctx.restore();
+//     },
+// };
 
 const doughnutChartOptions = {
     responsive: true,
@@ -117,7 +117,7 @@ const doughnutChartOptions = {
         },
     },
     maintainAspectRatio: false,
-    plugins: [centerTextPlugin],
+    // plugins: [centerTextPlugin],
 };
 
 const complianceSummary = [
