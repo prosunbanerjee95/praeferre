@@ -210,12 +210,12 @@ function DashboardChart() {
         cutout: "70%",
     };
 
-    const chartDataSource = [
-        ["Task Status", "Count"],
-        ["Overdue", 10],
-        ["Open", 20],
-        ["Completed", 30],
-    ];
+    // const chartDataSource = [
+    //     ["Task Status", "Count"],
+    //     ["Overdue", 10],
+    //     ["Open", 20],
+    //     ["Completed", 30],
+    // ];
 
     // const options = {
     //     title: "Task Status Summary",

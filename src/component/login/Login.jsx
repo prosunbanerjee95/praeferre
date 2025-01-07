@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png';
 import image from '../../assets/PRAEFERRE-Logo_Black.png'
 import { Box, TextField, Button, InputAdornment, Avatar, Typography } from '@mui/material';
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
-import { Navigate,useNavigate } from 'react-router';
+import {useNavigate } from 'react-router';
 
 
 
