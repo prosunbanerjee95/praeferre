@@ -21,11 +21,18 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      # Uncomment to run tests
       # - name: Run Tests
       #   run: npm test
 
       - name: Build Project
         run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: ./build
 
   deploy:
     runs-on: ubuntu-latest
@@ -34,9 +41,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+
       - name: Set up GitHub token
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -44,5 +56,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-         publish_dir: ./build
-         github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          github_token: ${{ secrets.GITHUB_TOKEN }}
