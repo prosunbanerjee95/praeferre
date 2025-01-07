@@ -1,31 +1,34 @@
-name: React CI/CD Pipeline
+name: React Build and Deploy
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull request to the main branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '16'  # Set Node.js version for the build
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
       # - name: Run Tests
-        # run: npm test
+      #   run: npm test  # You can customize this to your build command
 
-      - name: Build Project
-        run: npm run build
+      - name: Build the React project
+        run: npm run build 
 
   deploy:
     runs-on: ubuntu-latest
@@ -33,6 +36,13 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        with:
+        with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          publish_branch: gh-pages
+          allow_empty_commit: false
+          keep_files: false
+          force_orphan: false
+          enable_jekyll: false
+          disable_nojekyll: false
+          exclude_assets: .github
