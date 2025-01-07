@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -18,21 +17,22 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: npm install
 
-      # Uncomment to run tests
-      # - name: Run Tests
-      #   run: npm test
+      - name: Run Tests
+        run: npm test
 
       - name: Build Project
         run: npm run build
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-artifacts
-          path: ./build
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,11 +40,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifacts
 
       - name: Set up GitHub token
         env:
